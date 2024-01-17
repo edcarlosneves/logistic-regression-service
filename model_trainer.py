@@ -1,3 +1,4 @@
+import uuid
 from datetime import datetime
 
 import pandas as pd
@@ -61,7 +62,7 @@ class ModelTrainer:
     def make_prefix_name_for_classifier(self):
         classifier_accuracy_str = str(self.classifier_accuracy).replace(".", "_")
         timestr = get_timenow_str()
-        self.classifier_prefix_name = f"acc_{classifier_accuracy_str}_{timestr}"
+        self.classifier_prefix_name = str(uuid.uuid4())
 
     def make_classifier_path_to_save(self):
         self.classifier_path = (
@@ -95,4 +96,4 @@ class ModelTrainer:
 
 
 model_trainer = ModelTrainer("social_network_ads.csv", 0.75)
-model_trainer()
+print(model_trainer())
