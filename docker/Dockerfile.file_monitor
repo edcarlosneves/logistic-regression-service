@@ -1,0 +1,10 @@
+FROM python:3.10-slim
+
+COPY requirements/base.txt .
+RUN pip install -r base.txt
+
+WORKDIR /usr/src/app
+COPY model_trainer.py /usr/src/app/
+
+# RUN pip3 install -r /usr/src/app/requirements/base.txt
+ENTRYPOINT ["python3", "model_trainer.py"]
